@@ -1,4 +1,6 @@
-from turtle import *
+from turtle import left, right, forward, backward, setup, done, hideturtle, \
+                position, speed, pendown, fillcolor, begin_fill, end_fill, \
+                sety, setx, penup
 
 
 def draw(where, line):
@@ -73,10 +75,12 @@ num_iter = 0
 while num_iter != 7:
     line /= 2
     length_pos_current = int(len(pos_current)/3)
+
     for i in range(length_pos_current):
         draw('right', line)
         draw('bottom', line)
         draw('left', line)
+
     pos_current = pos_next
     post_next = []
     num_iter += 1
