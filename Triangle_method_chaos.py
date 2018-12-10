@@ -1,10 +1,17 @@
-from turtle import *
+# work time: ~20-25s
+from turtle import sety, setx, penup, pendown, left, right, forward, dot, \
+                tracer, done, towards, distance, speed, setup
 from random import randint, choice
+from time import time
 
 
 def choose_random():
-    dots = [0,1,2]
+    # 0 left - attract
+    # 1 top - attract
+    # 2 right - attract
+    dots = [0, 1, 2]
     return choice(dots)
+
 
 def start_dot():
     penup()
@@ -13,7 +20,7 @@ def start_dot():
     setx(start_x)
     sety(start_y)
     pendown()
-    dot(5)
+    dot(2)
 
 
 def create_attractes():
@@ -24,26 +31,28 @@ def create_attractes():
         setx(i[0])
         sety(i[1])
         pendown()
-        dot(5)
+        dot(2)
 
-# 0 left - attract
-# 1 top - attract
-# 2 right - attract
+
+start_time = time()
 pos_attractes = [(-300, -300), (0, 300), (300, -300)]
 
 setup(1080, 700)
+tracer(0)
 speed(0)
 create_attractes()
 start_dot()
 
-for i in range(1):
+for i in range(30000):
     dot_to_attracte = pos_attractes[choose_random()]
-    #rotate turtle to attract
-    t = towards(dot_to_attracte)
-    print(dot_to_attracte)
-    print(t)
-    left(t)
+    # rotate turtle to attract
+    angle_to_rotate = towards(dot_to_attracte)
+    left(angle_to_rotate)
     dist = distance(dot_to_attracte)
-    
-    
+    penup()
+    forward(dist/2)
+    pendown()
+    dot(2)
+    right(angle_to_rotate)
+
 done()
